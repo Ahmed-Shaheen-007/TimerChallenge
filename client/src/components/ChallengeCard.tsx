@@ -2,11 +2,12 @@ import { ChallengeWithParticipants } from "@/types";
 import { formatDateRange } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { MoreVertical, Plus } from "lucide-react";
+import { MoreVertical, Plus, ExternalLink } from "lucide-react";
 import ParticipantProgress from "./ParticipantProgress";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import AddProgressModal from "./AddProgressModal";
+import { Link } from "wouter";
 
 interface ChallengeCardProps {
   challenge: ChallengeWithParticipants;
@@ -46,9 +47,25 @@ export default function ChallengeCard({ challenge, onAddProgress }: ChallengeCar
               {formatDateRange(startDate, endDate)}
             </p>
           </div>
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-            <MoreVertical className="h-4 w-4" />
-          </Button>
+          <div className="flex gap-1">
+            <Button 
+              asChild
+              variant="ghost" 
+              size="icon" 
+              className="text-muted-foreground hover:text-foreground"
+            >
+              <Link href={`/challenge/${challenge.id}`}>
+                <ExternalLink className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-muted-foreground hover:text-foreground"
+            >
+              <MoreVertical className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </CardHeader>
       
