@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 7%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+  
+  /* Chart and avatar colors */
+  --chart-1: 207 90% 54%;
+  --chart-2: 142 71% 45%;
+  --chart-3: 330 81% 60%;
+  --chart-4: 262 80% 63%;
+  --chart-5: 25 95% 53%;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 7%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+/* Progress bar styles */
+.progress-bar {
+  @apply h-2 bg-muted rounded-full overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full rounded-full transition-all duration-500;
+}
+
+/* Container for challenges */
+.challenges-container {
+  @apply grid gap-6;
+}
+
+/* Participant card styling */
+.participant {
+  @apply flex items-center gap-3;
+}
+
+.participant-info {
+  @apply flex-grow;
+}
+
+.participant-header {
+  @apply flex justify-between items-center mb-1;
+}
+
+/* Provide consistent avatar colors */
+.avatar-blue {
+  background-color: hsl(var(--chart-1));
+}
+
+.avatar-green {
+  background-color: hsl(var(--chart-2));
+}
+
+.avatar-pink {
+  background-color: hsl(var(--chart-3));
+}
+
+.avatar-purple {
+  background-color: hsl(var(--chart-4));
+}
+
+.avatar-orange {
+  background-color: hsl(var(--chart-5));
+}
