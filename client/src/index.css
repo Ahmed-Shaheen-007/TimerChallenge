@@ -3,29 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 7%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 207 90% 54%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --background: 222 47% 11%;
+  --foreground: 210 40% 98%;
+  --card: 222 47% 13%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222 47% 11%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 217 33% 17%;
+  --accent-foreground: 210 40% 98%;
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217 33% 20%;
+  --input: 217 33% 20%;
+  --ring: 224 76% 48%;
   --radius: 0.5rem;
   
   /* Chart and avatar colors */
-  --chart-1: 207 90% 54%;
+  --chart-1: 217 91% 60%;
   --chart-2: 142 71% 45%;
   --chart-3: 330 81% 60%;
   --chart-4: 262 80% 63%;
@@ -33,25 +33,25 @@
 }
 
 .dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 7%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 207 90% 54%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --background: 222 47% 11%;
+  --foreground: 210 40% 98%;
+  --card: 222 47% 13%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222 47% 11%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 217 33% 17%;
+  --accent-foreground: 210 40% 98%;
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217 33% 20%;
+  --input: 217 33% 20%;
+  --ring: 224 76% 48%;
 }
 
 @layer base {
@@ -70,11 +70,52 @@
 
 .progress-fill {
   @apply h-full rounded-full transition-all duration-500;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.9;
+  }
 }
 
 /* Container for challenges */
 .challenges-container {
   @apply grid gap-6;
+}
+
+/* Challenge animations */
+.challenge-card {
+  @apply transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg;
+}
+
+/* Page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 300ms, transform 300ms;
 }
 
 /* Participant card styling */
@@ -88,6 +129,35 @@
 
 .participant-header {
   @apply flex justify-between items-center mb-1;
+}
+
+/* Scoreboard styling */
+.scoreboard {
+  @apply bg-card rounded-xl p-6 mb-8;
+}
+
+.leaderboard-item {
+  @apply py-3 px-4 flex items-center gap-4 rounded-lg transition-colors;
+}
+
+.leaderboard-item:hover {
+  @apply bg-secondary/50;
+}
+
+.rank-badge {
+  @apply flex items-center justify-center w-8 h-8 rounded-full text-primary-foreground text-sm font-bold;
+}
+
+.rank-1 {
+  @apply bg-yellow-500;
+}
+
+.rank-2 {
+  @apply bg-gray-400;
+}
+
+.rank-3 {
+  @apply bg-amber-700;
 }
 
 /* Provide consistent avatar colors */
@@ -109,4 +179,37 @@
 
 .avatar-orange {
   background-color: hsl(var(--chart-5));
+}
+
+/* Glass effect for modals */
+.glass-modal {
+  @apply backdrop-blur-lg bg-card/90 border-primary/20;
+}
+
+/* Button animations */
+.button-primary {
+  @apply relative overflow-hidden transition-all duration-300;
+}
+
+.button-primary::after {
+  content: '';
+  @apply absolute inset-0 bg-primary opacity-0 transition-opacity duration-300;
+}
+
+.button-primary:hover::after {
+  @apply opacity-20;
+}
+
+/* Fade animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -94,7 +94,7 @@ export default function AddProgressModal({
   
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] glass-modal fade-in">
         <DialogHeader>
           <DialogTitle>Add {unitLabel}</DialogTitle>
         </DialogHeader>

@@ -151,6 +151,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  // Join an existing challenge
+  apiRouter.post("/challenges/:id/join", async (req, res) => {
+    try {
+      const challengeId = parseInt(req.params.id);
+      if (isNaN(challengeId)) {
+        return res.status(400).json({ message: "Invalid challenge ID" });
+      }
+      
+      const { userId } = req.body;
+      if (!userId) {
+        return res.status(400).json({ message: "User ID is required" });
+      }
+      
+      // Check if challenge exists
+      const challenge = await storage.getChallengeById(challengeId);
+      if (!challenge) {
+        return res.status(404).json({ message: "Challenge not found" });
+      }
+      
+      // Check if user exists
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      
+      // Check if user is already a participant
+      const participants = await storage.getParticipantsByChallenge(challengeId);
+      const isAlreadyParticipant = participants.some(p => p.userId === userId);
+      
+      if (isAlreadyParticipant) {
+        return res.status(400).json({ message: "User is already a participant in this challenge" });
+      }
+      
+      // Add user as a participant
+      const participant = await storage.addParticipantToChallenge({
+        userId,
+        challengeId
+      });
+      
+      res.status(201).json({
+        message: "Successfully joined the challenge",
+        participant
+      });
+    } catch (error) {
+      console.error("Error joining challenge:", error);
+      res.status(500).json({ message: "Failed to join challenge" });
+    }
+  });
+  
   // Get progress entries for a participant
   apiRouter.get("/participants/:id/progress", async (req, res) => {
     try {

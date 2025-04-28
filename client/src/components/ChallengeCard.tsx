@@ -30,7 +30,7 @@ export default function ChallengeCard({ challenge, onAddProgress }: ChallengeCar
   };
   
   return (
-    <Card className={challenge.isCompleted ? "opacity-80" : ""}>
+    <Card className={`challenge-card fade-in ${challenge.isCompleted ? "opacity-80" : ""}`}>
       <CardHeader className="pb-0 pt-6">
         <div className="flex justify-between items-start">
           <div>
@@ -54,7 +54,7 @@ export default function ChallengeCard({ challenge, onAddProgress }: ChallengeCar
       
       <CardContent className="pt-4">
         <div className="space-y-4 mb-2">
-          {challenge.participants.map((participant) => (
+          {challenge.participants.map((participant, index) => (
             <ParticipantProgress 
               key={participant.id}
               participant={participant}
@@ -68,7 +68,7 @@ export default function ChallengeCard({ challenge, onAddProgress }: ChallengeCar
           <div className="flex justify-end mt-4">
             <Button 
               variant="outline" 
-              className="bg-primary/10 hover:bg-primary/20 text-primary" 
+              className="button-primary bg-primary/10 hover:bg-primary/20 text-primary" 
               onClick={handleAddProgress}
             >
               <Plus className="h-4 w-4 mr-2" />
